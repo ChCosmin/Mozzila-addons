@@ -1,0 +1,1 @@
+This extension allows you to change the body color of the page

@@ -1,0 +1,30 @@
+html, body {
+    width: 100px;
+    overflow: hidden;
+  }
+  
+  .button {
+    text-align: center;
+    font-size: 1.5em;
+    cursor: pointer;
+    width:25px; 
+    height:25px;
+  }
+  
+  .color:hover {
+    background-color: #CFF2F2;
+  }
+  
+  .color {
+    background-color: #E5F2F2;
+  }
+  
+  .clear {
+    background-color: #FBFBC9;
+    display: block;
+  }
+  
+  .clear:hover {
+    background-color: #EAEA9D;
+  }
+  
