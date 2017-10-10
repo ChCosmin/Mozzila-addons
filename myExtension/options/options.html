@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">    
+    <script src="../libs/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+    <form>
+        <table>
+            <tr>
+                <td>Zoom Delay Time :</td>
+                <td><input id="optionsDelay" type="number" name="quantity" min="0" max="10000" step="1000"></td>
+            </tr>
+            <tr>
+                <td>Zoom Image Scaling :</td>
+                <td><input id="optionsScale" type="number" name="quantity" min="0" max="3" step="0.1"></td>
+            </tr>
+           
+            <tr>
+                <td>Gallery Background Color :</td>
+                <td><input id="optionsColor" type="color"></td>
+            </tr>
+            <tr >
+                <td>Gallery Title Color :</td>
+                <td><input id="optionsTitleColor" type="color"></td>
+            <tr>
+                <td>Images per row (Gallery) :</td>
+                <td style="display:flex; justify-content: space-around">
+                    1.<input type="radio" name="imgNr" value="1">
+                    2.<input type="radio" name="imgNr" value="2">
+                    3.<input type="radio" name="imgNr" value="3">
+                    4.<input type="radio" name="imgNr" value="4">
+                </td>
+            </tr>
+            </tr>
+         
+            <tr>
+                <td>Favorites Background Color :</td>
+                <td><input id="favColor" type="color"></td>
+            </tr>
+            <tr>
+                <td>Favorites Title Color :</td>
+                <td><input id="favTitleColor" type="color"></td>
+            </tr>
+            <tr>
+                <td>Images per row (Favorites) :</td>
+                <td style="display:flex; justify-content: space-around">
+                    1.<input type="radio" name="favImgNr" value="1">
+                    2.<input type="radio" name="favImgNr" value="2">
+                    3.<input type="radio" name="favImgNr" value="3">
+                    4.<input type="radio" name="favImgNr" value="4">
+                </td>
+            </tr>
+
+            <tr>
+                <td><input type="submit" value="Save options"><h5>requires refresh for changes to apply</h5></td>
+            </tr>
+        </table>
+    </form>
+    <script src="options.js"></script>
+</body>
+</html>

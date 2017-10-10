@@ -1,0 +1,48 @@
+{
+    "description": "Whenever the mouse hovers over an image, bring it into front plan for a better inspection, favorite it, set options for it or download it. Enjoy",
+    "manifest_version": 2,
+    "name": "Zoomimg",
+    "version": "2.1.1",
+    "icons": {
+        "64": "icons/zoomimg-64.png",
+        "48": "icons/zoomimg-48.png",
+        "32": "icons/zoomimg-32.png"
+      },
+    	
+    "background": {
+        "scripts": ["background/background.js"]
+    },
+
+    "content_scripts": [
+        {
+        "matches": ["<all_urls>"],
+        "js": ["libs/jquery.min.js","content_scripts/zoomimg.js"],
+        "run_at": "document_end"
+        }
+    ],
+
+    "permissions": [
+        "activeTab", "tabs", "storage"
+    ],
+
+    "options_ui": {
+        "page": "options/options.html"
+    },
+
+    "browser_action": {
+        "default_icon": "icons/zoomimg-32.png",
+        "default_title": "Zoomimg",
+        "default_popup": "popup/zoomify.html"
+    },
+
+    "applications": {
+        "gecko": {
+          "id": "zoomimg@example.com"
+        }
+    },
+
+    "web_accessible_resources": [
+        "icons/fav-star.png"
+    ]
+}
+
