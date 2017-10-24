@@ -1,5 +1,5 @@
 html, body {
-  width: 150px;
+  width: 200px;
   background-color: #DCDCDC;
 }
 
@@ -15,7 +15,18 @@ html, body {
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none;
   }
-  
+
+.button:first-child {
+    border-radius: 0 0 20px 20px;
+    position: relative;
+    top:-12px;
+}
+
+.button:last-child {
+    border-radius: 20px 20px 0 0;
+    position: relative;
+    bottom:-12px;
+}
 .button:hover {
     background-color: #CFF2F2;
 }
@@ -31,4 +42,12 @@ html, body {
 
 #clear:hover {
     background-color: #EAEA9D;
+}
+
+.disabled {
+    color: red;
+}
+
+.enabled {
+    color: green;
 }

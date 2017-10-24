@@ -86,6 +86,7 @@ const imgWrapStyle = {
     "justify-content": "space-around",
     "width": "100%"
 }
+
 var favHeader = $('<h1></h1>');
 var notif = $('<h5></h5>');
 var sidebar = $('<button>Delete images</button>');
@@ -126,7 +127,6 @@ function insertFavorites() {
     var favContainer = $('<div></div>').css(favContainerStyle);
     var favWrap = $("<div></div>").css(favWrapStyle);
     var imgWrap = $("<div id='imgWrap'></div>").css(imgWrapStyle);
-    
     $(favHeader).css(favHeaderStyle);
     $(favHeader).append('Your favorite images');
     $(favWrap).append(favHeader);

@@ -1,10 +1,8 @@
 //vars
-var myTimeout;
-var imagesObject = $('img');
-var bigImg = [];
-let uniqueSrc = [];
-var uniqueImgs = [];
-
+let imagesObject = $('img');
+var bigImg = [],
+    uniqueSrc = [],
+    uniqueImgs = [];
 
 //element styles
 browser.storage.sync.get("scale").then((rez) => {
@@ -13,48 +11,6 @@ browser.storage.sync.get("scale").then((rez) => {
         "transform": `scale(${rez.scale})`
     };
 });
-const containerStyle = {
-    "position": "fixed",
-    "top": "0",
-    "left": "0",
-    "height": "100%",
-    "width": "100%",
-    "background-color": "rgba(0,0,0,0.8)",
-    'z-index': "999999999"
-};
-const closeBtnStyle = {
-    "position": "fixed",
-    "bottom": '0',
-    "right": '0',
-    "width": '100px',
-    "height": '100px',
-    "border-radius": '20px 0 0 0',
-    "font-size": "30px",
-    'background': '#3C4057',
-    'border': '1px solid #3C4057',
-    'font-weight': '700',
-    'color': "#ffffff"
-};
-const wrapperStyle = {
-    "position": "fixed",
-    "top": "50%",
-    "left": "50%",
-    "width": "auto",
-    "height": "auto",
-    "transform": "translate(-50%,-50%)"
-};
-const galleryContainerStyle = {
-    "position": "absolute",
-    "top": "0",
-    "left": "0",
-    "height": "100%",
-    "width": "100%"
-};
-const galleryWrapStyle = {
-    "display": "flex",
-    "flex-wrap": "wrap",
-    "padding": "30px 30px 30px 40px"
-};
 browser.storage.sync.get("radioGalery").then((rez) => {
     switch (rez.radioGalery) {
         case '1':
@@ -94,23 +50,6 @@ browser.storage.sync.get("radioGalery").then((rez) => {
     }
 
 });
-const favBtnStyle = {
-    "position": "fixed",
-    "bottom": '0',
-    "left": '0',
-    "width": '100px',
-    "height": '100px',
-    "border-radius": '0 20px 0 0',
-    "background-color": "#C0C0C0",
-    "color": "#000000"
-}
-const favMsgStyle = {
-    'position': 'fixed',
-    'bottom': '50px',
-    'height': '70px',
-    'color': 'white',
-    'font-size': '0.8em'
-}
 browser.storage.sync.get("titleColor").then((rez) => {
     headerStyle = {
         "width": "100%",
@@ -125,62 +64,135 @@ browser.storage.sync.get("titleColor").then((rez) => {
         'text-shadow': '4px 4px 5px #000000'
     };
 });
-const imgWrapStyle = {
-    'border': '10px solid darkgray',
-    'display': 'flex',
-    'flex-wrap': 'wrap',
-    'padding': '20px',
-    'border-style': 'inset double',
-    'border-radius': '10px',
-    "justify-content": "space-around",
-    "width": '100%'
-}
-const dnlBtnStyle = {
-    "position": "fixed",
-    "bottom": '0',
-    "right": '6%',
-    "width": '200px',
-    "height": '100px',
-    "border-radius": '20px 20px 0 0',
-    "color": "#ffffff",
-    "font-size": "20px",
-    'background': '#3C4057',
-    'border': '1px solid #3C4057',
-    'font-weight': '700'
-}
+const containerStyle = {
+        "position": "fixed",
+        "top": "0",
+        "left": "0",
+        "height": "100%",
+        "width": "100%",
+        "background-color": "rgba(0,0,0,0.8)",
+        'z-index': "999999999"
+    },
+    closeBtnStyle = {
+        "position": "fixed",
+        "bottom": '0',
+        "right": '0',
+        "width": '100px',
+        "height": '100px',
+        "border-radius": '20px 0 0 0',
+        "font-size": "30px",
+        'background': '#3C4057',
+        'border': '1px solid #3C4057',
+        'font-weight': '700',
+        'color': "#ffffff"
+    },
+    wrapperStyle = {
+        "position": "fixed",
+        "top": "50%",
+        "left": "50%",
+        "width": "auto",
+        "height": "auto",
+        "transform": "translate(-50%,-50%)"
+    },
+    galleryContainerStyle = {
+        "position": "absolute",
+        "top": "0",
+        "left": "0",
+        "height": "100%",
+        "width": "100%"
+    },
+    galleryWrapStyle = {
+        "display": "flex",
+        "flex-wrap": "wrap",
+        "padding": "30px 30px 30px 40px"
+    },
+    favBtnStyle = {
+        "position": "fixed",
+        "bottom": '0',
+        "left": '0',
+        "width": '100px',
+        "height": '100px',
+        "border-radius": '0 20px 0 0',
+        "background-color": "#C0C0C0",
+        "color": "#000000"
+    },
+    favMsgStyle = {
+        'position': 'fixed',
+        'bottom': '50px',
+        'height': '70px',
+        'color': 'white',
+        'font-size': '0.8em'
+    },
+    imgWrapStyle = {
+        'border': '10px solid darkgray',
+        'display': 'flex',
+        'flex-wrap': 'wrap',
+        'padding': '20px',
+        'border-style': 'inset double',
+        'border-radius': '10px',
+        "justify-content": "space-around",
+        "width": '100%'
+    },
+    dnlBtnStyle = {
+        "position": "fixed",
+        "bottom": '0',
+        "right": '6%',
+        "width": '200px',
+        "height": '100px',
+        "border-radius": '20px 20px 0 0',
+        "color": "#ffffff",
+        "font-size": "20px",
+        'background': '#3C4057',
+        'border': '1px solid #3C4057',
+        'font-weight': '700'
+    };
 
 //create elements
-var popContainer = $("<div></div>").css(containerStyle);
-var targetWrap = $("<div></div>").attr("id", "wrap").css(wrapperStyle);
-var closeBtn = $("<button>X</button>").css(closeBtnStyle);
-var tabHeader = $("<h1></h1>");
-var favBtn = $("<button></button>").css(favBtnStyle);
-var favIcon = browser.extension.getURL("icons/fav-star.png");
-var favImg = $("<img>").attr({
-    src: favIcon,
-    height: "50px",
-    width: "50px"
-});
+var popContainer = $("<div></div>").css(containerStyle),
+    targetWrap = $("<div></div>").attr("id", "wrap").css(wrapperStyle),
+    closeBtn = $("<button>X</button>").css(closeBtnStyle),
+    tabHeader = $("<h1></h1>"),
+    favBtn = $("<button></button>").css(favBtnStyle),
+    favIcon = browser.extension.getURL("icons/fav-star.png"),
+    favImg = $("<img>").attr({
+        src: favIcon,
+        height: "50px",
+        width: "50px"
+    });
+
 
 //purify
-function escapeHTML(str) { return str.replace(/[&"'<>]/g, (m) => escapeHTML.replacements[m]); }
-escapeHTML.replacements = { "&": "&amp;", '"': "&quot;", "'": "&#39;", "<": "&lt;", ">": "&gt;" };
+function escapeHTML(str) {
+    return str.replace(/[&"'<>]/g, (m) => escapeHTML.replacements[m]);
+};
+escapeHTML.replacements = {
+    "&": "&amp;",
+    '"': "&quot;",
+    "'": "&#39;",
+    "<": "&lt;",
+    ">": "&gt;"
+};
+
 //capitalise first letter of string
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
 //clear body
 function removeEverything() {
     while (document.body.firstChild) {
+        document.body.firstChild.innerHTML = '';
         document.body.firstChild.remove();
     }
 }
-//filter images, show only those w/ height > 100
+
+//filter images, show only those w/ height > 150px
 var imageList = Object.keys(imagesObject).map(function (key) {
     if (imagesObject[key].height > 150) {
         bigImg.push(imagesObject[key].src);
     }
 })
+
 //filter out the duplicates
 function unique(list) {
     var result = [];
@@ -192,36 +204,56 @@ function unique(list) {
         uniqueImgs.push(a[0]);
     })
 }
+
 //render gallery
 function insertGallery() {
+    removeEverything();
+    browser.runtime.sendMessage({
+        isGallery: 'isGallery'
+    });
     unique(bigImg);
-    var galleryContainer = $('<div></div>').css(galleryContainerStyle);
-    var galleryWrap = $("<div></div>").css(galleryWrapStyle);
-    var imgWrap = $("<div></div>").css(imgWrapStyle);
-    var title = capitalizeFirstLetter(escapeHTML(document.title));
+    var galleryContainer = $('<div></div>').css(galleryContainerStyle),
+        galleryWrap = $("<div id='galleryWrap'></div>").css(galleryWrapStyle),
+        imgWrap = $("<div></div>").css(imgWrapStyle),
+        title = capitalizeFirstLetter(escapeHTML(document.title));
     $(tabHeader).css(headerStyle);
     $(tabHeader).text('All of - ' + title + "'s - loaded images");
-    browser.storage.sync.get("color").then((rez) => {
-        $('body').css("background-color", rez.color);
-    });
     $(uniqueImgs).css(galleryStyle);
     $(galleryWrap).append(tabHeader);
     $(galleryWrap).append(imgWrap);
     $(imgWrap).append(uniqueImgs);
     $(galleryContainer).append(galleryWrap);
     document.body.appendChild(galleryContainer[Object.keys(galleryContainer)[0]]);
+    let getImages = $('img')
+    browser.storage.sync.get().then((rez) => {
+        $('body').css("background-color", rez.color);
+        if (rez.onoff[1] === "enabled") {
+            zoomOn(getImages);
+        } else if (rez.onoff[1] === "disabled") {
+            zoomOff(getImages);
+        }
+    });
 }
+
 //zoom 
 function pop(img) {
-    let dnlBtn = $('<button><button>').css(dnlBtnStyle);
-    dnlBtn.text("Download");
-    let dnlBtnWrap = $('<a></a>');
-    dnlBtnWrap.append(dnlBtn);
-    dnlBtnWrap.attr({
-        "href": img.src,
-        "download": img.src
-    });
+    // browser.runtime.sendMessage({
+    //     poped: 'poped'
+    // })
+    let dnlBtn = $('<button>Download</button>').css(dnlBtnStyle),
+        dnlBtnWrap = $('<a></a>').attr({
+            "href": escapeHTML(img.src),
+            "download": escapeHTML(img.src)
+        });
+    dnlBtnWrap.html(dnlBtn);
     $(img).css(imageStyle);
+    browser.storage.sync.get().then((x) => {
+        if (x.gallery === "true") {
+            $(img).css('transform', `scale(${parseInt(x.scale)+1})`);
+            $(img).parent().css('left', '60%');
+        }
+    });
+    targetWrap[Object.keys(targetWrap)[0]].innerHTML = '';
     targetWrap.append(img);
     popContainer.append(targetWrap);
     favBtn.html(favImg);
@@ -247,6 +279,7 @@ function pop(img) {
 
     closeBtn.click(function (e) {
         $(e.target).parent().remove();
+        $(popContainer).empty();
         $(targetWrap).empty();
     })
 
@@ -254,8 +287,8 @@ function pop(img) {
         if ($(e.target).hasClass('faved')) {
             const favMsg = $('<span id="unsaved">Deleted from favorites</span>').css(favMsgStyle);
             let favLink = $('#wrap img')[0].src;
-            $(e.target).css('background-color', "#C0C0C0");
             $(e.target).removeClass('faved');
+            $(e.target).css('background-color', "#C0C0C0");
             $(e.target).parent().append(favMsg);
             $(favMsg).fadeOut(2000);
             browser.runtime.sendMessage({
@@ -274,35 +307,118 @@ function pop(img) {
         }
     })
 }
-// zoom delay
-browser.storage.sync.get("delay").then((rez) => {
-    imagesObject.mouseenter(function (e) {
-        $(e.target).css("border", '3px solid yellow');
-        myTimeout = setTimeout(function () {
-            var targetCloneObj = $(e.target).clone();
-            var actualClone = targetCloneObj[Object.keys(targetCloneObj)[0]];
-            $(actualClone).css("border", 'none');
-            pop(actualClone);
-        }, rez.delay);
-    }).mouseleave(function (e) {
-        $(e.target).css("border", 'none');
-        clearTimeout(myTimeout);
+
+// activate zoom
+function zoomOn(list) {
+    browser.storage.sync.get("delay").then((rez) => {
+        let myTimeout;
+        list.mouseenter(function (e) {
+            if (e.target.height > 50) {
+                $(e.target).css("border", '3px solid yellow');
+                myTimeout = setTimeout(function () {
+                    var targetCloneObj = $(e.target).clone();
+                    var actualClone = targetCloneObj[Object.keys(targetCloneObj)[0]];
+                    $(actualClone).css("border", 'none');
+                    pop(actualClone);
+                }, rez.delay);
+            }
+
+        }).mouseleave(function (e) {
+            $(e.target).css("border", 'none');
+            clearTimeout(myTimeout);
+        })
     })
-})
-//master func that listens to messajes
+}
+
+//disable zoom
+function zoomOff(list) {
+    $(list).off("mouseenter");
+}
+
+function refresh() {
+    location.reload();
+    browser.runtime.sendMessage({
+        isGallery: 'isntGallery'
+    });
+}
+
+//master func that listens to messages
 function menuList(request) {
     let key = Object.keys(request)[0];
     switch (key) {
+
         case "gallery":
-            removeEverything();
+            browser.runtime.sendMessage({
+                notif: 'notifGallery'
+            });
             insertGallery();
+
             break;
+
         case "clear":
-            location.reload();
+            browser.runtime.sendMessage({
+                notif: 'notifClear'
+            });
+            refresh();
+
+            break;
+
+        case "disabled":
+            browser.storage.sync.get().then((x) => {
+                browser.runtime.sendMessage({
+                    notif: 'notifDisable'
+                });
+                if (x.gallery === "true") {
+                    let getImages = $('img');
+                    zoomOff(getImages);
+                } else {
+                    zoomOff(imagesObject);
+                }
+
+            })
+
+            break;
+
+        case "enabled":
+            browser.storage.sync.get().then((x) => {
+                browser.runtime.sendMessage({
+                    notif: 'notifEnable'
+                });
+                if (x.gallery === "true") {
+                    let getImages = $('img');
+                    zoomOn(getImages);
+                } else {
+                    zoomOn(imagesObject);
+                }
+
+            })
+
+            break;
+
+        case "pageRefresh":
+            browser.storage.sync.get().then((x) => {
+                browser.runtime.sendMessage({
+                    isGallery: 'isntGallery'
+                });
+                if (x.onoff[1] === "enabled") {
+                    zoomOn(imagesObject);
+                } else if (x.onoff[1] === "disabled") {
+                    zoomOff(imagesObject);
+                }
+            })
             break;
         default:
-            alert(" Something went wrong...ops :( ")
+            alert("Something went wrong! Please notify the problem at cosmin.chinde@gmail.com");
     }
+}
+
+//send signal every time page refreshes
+if (performance.navigation.type == 1) {
+    browser.runtime.sendMessage({
+        refreshed: 'refreshed'
+    });
+} else {
+    console.info("This page is not reloaded");
 }
 
 browser.runtime.onMessage.addListener(menuList);

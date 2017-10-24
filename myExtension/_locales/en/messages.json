@@ -1,0 +1,21 @@
+{
+    "extensionTitle":{
+        "message":"Zoomimg Notification"
+    },
+    "notifEnable":{
+        "message": "Zoom Enabled"
+    },
+    "notifDisable":{
+        "message": "Zoom Disabled"
+    },
+    "notifGallery":{
+        "message": "Opened Gallery",
+        "description": "aafdasfdasfdasfasfas"        
+    },
+    "notifClear":{
+        "message": "Closed Gallery"
+    },
+    "notifFavorites":{
+        "message": "Opened Favorites"
+    }    
+}
